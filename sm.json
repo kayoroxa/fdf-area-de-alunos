@@ -1,0 +1,7 @@
+{
+  "apiEndpoint": "https://fdf-area-de-alunos.prismic.io/api/v2",
+  "libraries": [
+    "@/slices"
+  ],
+  "_latest": "0.5.0"
+}
