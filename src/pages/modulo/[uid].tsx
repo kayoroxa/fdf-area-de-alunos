@@ -39,6 +39,11 @@ export default function ModuloPage({ response }: IModulo) {
           videoUrl: '/2.mp4',
         },
         {
+          name: 'como usar o can e could',
+          allow: true,
+          videoUrl: '/4.mp4',
+        },
+        {
           name: 'verbo to be',
           allow: false,
           videoUrl: '/3.mp4',

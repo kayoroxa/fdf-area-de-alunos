@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import OptionToggle from '../molecules/OptionToggle'
 import Playlist from '../molecules/PlayList'
+import Quiz from '../molecules/Quiz'
 import { _VideoData } from '../utils/types/_VideoData'
 
 interface IProps {
@@ -32,8 +33,13 @@ export default function VideoPlayPlaylist({ videosData }: IProps) {
       id="videosCardápio"
       className="flex flex-col  w-11/12 gap-12 items-center "
     >
-      <div id="videoWrapper">
-        <video ref={videoRef} className="w-full" controls autoPlay>
+      <div id="videoWrapper" className="w-full p-video relative">
+        <video
+          ref={videoRef}
+          className="w-full absolute top-0"
+          controls
+          autoPlay
+        >
           <source src={curVideo.videoUrl} type="video/mp4" />
         </video>
       </div>
@@ -50,6 +56,11 @@ export default function VideoPlayPlaylist({ videosData }: IProps) {
           curVideo={curVideo}
         />
       )}
+
+      {optionActive === 'material' && <Quiz />}
+      {optionActive === 'material' && <Quiz />}
+      {optionActive === 'material' && <Quiz />}
+      {optionActive === 'material' && <Quiz />}
     </div>
   )
 }

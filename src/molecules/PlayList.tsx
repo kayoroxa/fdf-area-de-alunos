@@ -28,7 +28,9 @@ export default function Playlist({
         >
           <div id="play">▶</div>
           <div className="flex flex-col flex-1">
-            <p className=" text-lg">{videoData.name}</p>
+            <p className=" text-lg capitalize">
+              {i + 1}. {videoData.name}
+            </p>
             <p className=" text-xs">06:25 / 15:05</p>
           </div>
           <div id="cadeado">{videoData.allow ? '' : '🔐'}</div>
