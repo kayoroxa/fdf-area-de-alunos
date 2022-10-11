@@ -33,6 +33,16 @@
           "label": "Numero de dias para liberar",
           "placeholder": ""
         }
+      },
+      "related_module": {
+        "type": "Link",
+        "config": {
+          "label": "Related Module",
+          "select": "document",
+          "customtypes": [
+            "module"
+          ]
+        }
       }
     }
   }

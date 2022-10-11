@@ -11,11 +11,21 @@
   "lang": "en-us",
   "alternate_languages": [],
   "data": {
-    "title": "soon",
+    "title": "trip",
     "video_url": {
       "link_type": "Web",
-      "url": "http://google.com"
+      "url": "https://prismic.io"
     },
-    "day_released": 99
+    "day_released": 27,
+    "related_module": {
+      "id": "mock_document_id",
+      "link_type": "Document",
+      "type": "module",
+      "tags": [],
+      "lang": "en-us",
+      "slug": null,
+      "first_publication_date": "1970-01-01T00:00:01+0000",
+      "last_publication_date": "1970-01-01T01:00:00+0000"
+    }
   }
 }

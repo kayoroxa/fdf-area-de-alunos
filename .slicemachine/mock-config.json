@@ -1,6 +1,16 @@
 {
   "_cts": {
     "lesson": {},
-    "module": {}
+    "module": {},
+    "tes": {}
+  },
+  "slices": {
+    "Test": {},
+    "Lesson": {
+      "default": {
+        "items": {},
+        "primary": {}
+      }
+    }
   }
 }

@@ -33,6 +33,17 @@
           "label": "Numero de dias para liberar",
           "placeholder": ""
         }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "test": {
+              "type": "SharedSlice"
+            }
+          }
+        }
       }
     }
   }

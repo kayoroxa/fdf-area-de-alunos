@@ -1,0 +1,41 @@
+{
+  "id": "test",
+  "type": "SharedSlice",
+  "name": "Lesson",
+  "description": "Test",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "Test",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "video_url": {
+          "type": "Link",
+          "config": {
+            "label": "Video Url",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "day_released": {
+          "type": "Number",
+          "config": {
+            "label": "Numero de dias para liberar",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

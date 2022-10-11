@@ -1,27 +1,23 @@
-import type { GetServerSideProps } from 'next'
-import { Aluno } from '../../lib/db'
-import styles from '../styles/Home.module.css'
+import * as prismic from '@prismicio/client'
+import sm from '../../sm.json'
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const alunos = { carlin: 'oi' }
+export async function getServerSideProps() {
+  const client = prismic.createClient(sm.apiEndpoint)
+  const response = await client.getByUID('module', 'modulo1')
 
+  console.log(response)
   return {
     props: {
-      alunos,
+      response,
     },
   }
 }
 
-interface PostProps {
-  alunos: Aluno[]
-}
-
-const Home = ({ alunos }: PostProps) => {
-  console.log(alunos)
+const Home = ({ response }: any) => {
   return (
-    <div className={styles.container}>
+    <div className="bg-red-500">
       Index page:
-      {JSON.stringify(alunos, null, 4)}
+      {JSON.stringify(response, null, 4)}
     </div>
   )
 }
