@@ -7,11 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate",
     "slicemachine": "start-slicemachine"
   },
   "dependencies": {
-    "@prisma/client": "^3.11.0",
     "@prismicio/client": "^6.7.1",
     "@prismicio/helpers": "^2.3.5",
     "@prismicio/react": "^2.5.0",
@@ -19,7 +17,8 @@
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-icons": "^4.4.0"
+    "react-icons": "^4.4.0",
+    "react-responsive": "^9.0.0"
   },
   "devDependencies": {
     "@types/node": "17.0.22",
