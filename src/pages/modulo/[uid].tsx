@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
-import MobileModule from '../../templates/MobileModule'
+import PCModule from '../../templates/PCModule'
 
 interface IModulo {
   response: {
@@ -25,26 +25,31 @@ interface IModulo {
 
 export default function ModuloPage({ response }: IModulo) {
   return (
-    <MobileModule
+    <PCModule
       moduloName="4 anos em 1 módulo"
       videosData={[
         {
-          name: 'pronomes',
+          name: 'Tudo sobre pronomes ( he | him | his )',
           allow: true,
           videoUrl: '/1.mp4',
         },
         {
-          name: 'código',
+          name: 'Entenda qualquer tempo do inglês (Códigos)',
           allow: true,
           videoUrl: '/2.mp4',
         },
         {
-          name: 'como usar o can e could',
+          name: 'Como usar o can e could',
           allow: true,
           videoUrl: '/4.mp4',
         },
         {
-          name: 'verbo to be',
+          name: 'Verbo to be em apenas 8 minutos',
+          allow: false,
+          videoUrl: '/3.mp4',
+        },
+        {
+          name: 'Todas as contrações do inglês',
           allow: false,
           videoUrl: '/3.mp4',
         },

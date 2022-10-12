@@ -8,7 +8,11 @@ module.exports = {
     './src/molecules/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        betterhover: { raw: '(hover: hover)' },
+      },
+    },
   },
   plugins: [],
 }

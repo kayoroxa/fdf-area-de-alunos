@@ -21,7 +21,8 @@ export default function TopBarControls({ moduloName }: IProps) {
         <AiFillHome />
       </div>
       <div id="title" className=" text-xl font-semibold">
-        {moduloName}
+        Formula Da Fluência
+        {/* {moduloName} */}
       </div>
       <div id="like">❤</div>
     </div>
