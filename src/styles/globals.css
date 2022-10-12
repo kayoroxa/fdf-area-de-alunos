@@ -45,4 +45,8 @@ body{
   .pointer-hover{
     @apply hover:cursor-pointer
   }
+  .tirinhas{
+    @apply flex gap-3 px-4 py-5 border-separate border border-gray-600 border-opacity-30 items-center
+  }
 }
+

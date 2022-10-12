@@ -70,42 +70,44 @@ export default function Playlist({
       className="flex flex-col  w-full bg-gray-700 rounded-2xl overflow-hidden"
     >
       <ModuleHeader moduleInfo={curModule} />
-      {videosData.map((videoData, i) => {
-        const selected = curVideo.name === videoData.name
-        return (
-          <div
-            key={i}
-            id="tirinha-do-vid"
-            className={`flex gap-3 px-4 py-5 border-separate border border-gray-600 border-opacity-30 items-center hover:bg-blue-400 ${
-              videoData.allow ? 'pointer-hover' : 'hover:cursor-not-allowed'
-            } ${selected ? 'selected' : 'not-selected'}`}
-            onClick={() => videoData.allow && onVideoSelect(videoData)}
-          >
+      <div id="wrapper-tiras" className="pb-5">
+        {videosData.map((videoData, i) => {
+          const selected = curVideo.name === videoData.name
+          return (
             <div
-              id="aula-numero"
-              className={`text-3xl py-2 px-3  text-gray-800 rounded-xl ${
-                selected ? 'bg-blue-300' : 'bg-gray-500'
-              }`}
+              key={i}
+              id="tirinha-do-vid"
+              className={`tirinhas ${
+                videoData.allow ? 'pointer-hover' : 'hover:cursor-not-allowed'
+              } ${selected ? 'selected' : 'not-selected'}`}
+              onClick={() => videoData.allow && onVideoSelect(videoData)}
             >
-              {i + 1}
-            </div>
-            <div className="flex flex-col flex-1">
-              <p className=" text-lg capitalize">{videoData.name}</p>
-              <p className=" text-xs">15:05</p>
-            </div>
+              <div
+                id="aula-numero"
+                className={`text-3xl py-2 px-3  text-gray-800 rounded-xl ${
+                  selected ? 'bg-blue-300' : 'bg-gray-500'
+                }`}
+              >
+                {i + 1}
+              </div>
+              <div className="flex flex-col flex-1">
+                <p className=" text-lg capitalize">{videoData.name}</p>
+                <p className=" text-xs">15:05</p>
+              </div>
 
-            {videoData.allow ? (
-              <div id="play" className="wrapper-icon h-7">
-                <GoPlay />
-              </div>
-            ) : (
-              <div id="cadeado" className="wrapper-icon h-7">
-                <GiPadlock />
-              </div>
-            )}
-          </div>
-        )
-      })}
+              {videoData.allow ? (
+                <div id="play" className="wrapper-icon h-7">
+                  <GoPlay />
+                </div>
+              ) : (
+                <div id="cadeado" className="wrapper-icon h-7">
+                  <GiPadlock />
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
       <div className="w-full drop-shadow-xl">
         <ModuleHeader
           moduleInfo={{
