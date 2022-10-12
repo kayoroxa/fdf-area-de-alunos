@@ -78,7 +78,9 @@ export default function Playlist({
               key={i}
               id="tirinha-do-vid"
               className={`tirinhas ${
-                videoData.allow ? 'pointer-hover' : 'hover:cursor-not-allowed'
+                videoData.allow
+                  ? 'pointer-hover'
+                  : 'hover:cursor-not-allowed opacity-30 border-opacity-90'
               } ${selected ? 'selected' : 'not-selected'}`}
               onClick={() => videoData.allow && onVideoSelect(videoData)}
             >
