@@ -42,11 +42,12 @@ export default function PCVideoPlayPlaylist({ videosData }: IProps) {
       </div>
 
       <div id="playListWrapper" className="flex-1 flex flex-col gap-6">
-        <h2>[ módulo 1 ] Playlist:</h2>
+        {/* <h2>[ módulo 1 ] Playlist:</h2> */}
         <Playlist
           videosData={videosData}
           onVideoSelect={vidSelected => setCurVideo(vidSelected)}
           curVideo={curVideo}
+          curModule={{ name: '4 anos em 1 módulo', indexModule: 1 }}
         />
       </div>
     </div>
