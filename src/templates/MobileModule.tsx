@@ -9,7 +9,7 @@ interface IProps {
 
 export default function MobileModule({ moduloName, videosData }: IProps) {
   return (
-    <div className="flex min-h-screen flex-col pb-9 justify-start items-center gap-12 max-w-screen-sm bg-gray-900 m-auto">
+    <div className="flex min-h-screen m-auto pb-9 max-w-screen-sm  flex-col justify-start items-center gap-12  bg-gray-900 ">
       <TopBarControls moduloName={moduloName} />
       <VideoPlayPlaylist videosData={videosData} />
     </div>

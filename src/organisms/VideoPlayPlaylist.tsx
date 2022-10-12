@@ -33,7 +33,7 @@ export default function VideoPlayPlaylist({ videosData }: IProps) {
       id="videosCardápio"
       className="flex flex-col  w-11/12 gap-12 items-center "
     >
-      <div id="videoWrapper" className="w-full p-video relative">
+      <div id="videoWrapper" className="w-full p-video relative bg-black">
         <video
           ref={videoRef}
           className="w-full absolute top-0"
@@ -51,6 +51,7 @@ export default function VideoPlayPlaylist({ videosData }: IProps) {
 
       {optionActive === 'playlist' && (
         <Playlist
+          curModule={{ name: 'Fundação', indexModule: 2 }}
           videosData={videosData}
           onVideoSelect={vidSelected => setCurVideo(vidSelected)}
           curVideo={curVideo}

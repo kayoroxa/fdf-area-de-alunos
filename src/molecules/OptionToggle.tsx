@@ -6,7 +6,7 @@ interface IProps {
 const getClass = (selected?: boolean) => {
   const init =
     'flex items-center justify-center flex-1 py-4 rounded-3xl hover:cursor-pointer'
-  return selected ? init + ' bg-green-500' : init
+  return selected ? init + ' bg-blue-500' : init
 }
 
 export default function OptionToggle({ optionActive, onOptionSelect }: IProps) {
