@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { AiFillHome } from 'react-icons/ai'
 
 interface IProps {
@@ -6,25 +6,24 @@ interface IProps {
 }
 
 export default function TopBarControls({ moduloName }: IProps) {
-  const router = useRouter()
-
   return (
-    <div
-      id="controlBar"
-      className="flex justify-between items-center w-full h-20 bg-gray-800 px-5 py-3 text-3xl"
-    >
+    <Link href="/" passHref>
       <div
-        id="back"
-        className=" hover:cursor-pointer hover:scale-110 transition-all"
-        onClick={() => router.push('/')}
+        id="controlBar"
+        className="flex justify-between items-center w-full h-20 bg-gray-800 px-5 py-3 text-3xl"
       >
-        <AiFillHome />
+        <div
+          id="back"
+          className=" hover:cursor-pointer hover:scale-110 transition-all"
+        >
+          <AiFillHome />
+        </div>
+        <div id="title" className=" text-xl font-semibold">
+          Formula Da Fluência
+          {/* {moduloName} */}
+        </div>
+        <div id="like">❤</div>
       </div>
-      <div id="title" className=" text-xl font-semibold">
-        Formula Da Fluência
-        {/* {moduloName} */}
-      </div>
-      <div id="like">❤</div>
-    </div>
+    </Link>
   )
 }

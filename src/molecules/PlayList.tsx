@@ -94,7 +94,9 @@ export default function Playlist({
               </div>
               <div className="flex flex-col flex-1">
                 <p className=" text-lg capitalize">{videoData.name}</p>
-                <p className=" text-xs">15:05</p>
+                <p className=" text-xs">
+                  {videoData.allow ? '15:05' : 'em breve'}
+                </p>
               </div>
 
               {videoData.allow ? (
