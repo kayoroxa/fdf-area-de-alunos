@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+import Video from '../atoms/Video'
 import Playlist from '../molecules/PlayList'
 import Quiz from '../molecules/Quiz'
 import { _VideoData } from '../utils/types/_VideoData'
@@ -16,27 +17,12 @@ const getClass = (selected?: boolean) => {
 export default function PCVideoPlayPlaylist({ videosData }: IProps) {
   const [curVideo, setCurVideo] = useState(videosData[0])
 
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.src = curVideo.videoUrl
-    }
-  }, [curVideo])
-
   const videoRef = useRef<HTMLVideoElement | null>(null)
 
   return (
     <div id="videosCardápio" className="flex w-full gap-12">
       <div id="left" className="flex flex-col gap-6 w-3/5">
-        <div id="videoWrapper" className="w-full p-video relative">
-          <video
-            ref={videoRef}
-            className="w-full absolute top-0"
-            controls
-            autoPlay
-          >
-            <source src={curVideo.videoUrl} type="video/mp4" />
-          </video>
-        </div>
+        <Video src={curVideo.videoUrl} />
         <h2>Materiais:</h2>
         <Quiz />
       </div>

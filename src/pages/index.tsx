@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { GoPlay } from 'react-icons/go'
 import { createClient } from '../../prismicio'
 
 /* eslint-disable @next/next/no-img-element */
@@ -36,16 +37,17 @@ export async function getStaticProps({ previewData }: any) {
 function Module({ name, imgUrl, link }: any) {
   return (
     <Link href={link} passHref>
-      <div className="flex flex-col card rounded-3xl overflow-hidden hover:cursor-pointer hover:scale-105">
-        <div className=" h-4/6">
+      <div className="flex flex-col card overflow-hidden rounded-3xl w-[286px] hover:cursor-pointer hover:scale-105 border-b-8 border-gray-700 shadow-bottom">
+        <div className="h-[286px]">
           <img
             src={imgUrl}
             alt=""
             className="w-full min-w-full h-full min-h-full object-cover"
           />
         </div>
-        <div className="flex-1 flex  flex-col bg-slate-400 p-4 text-lg justify-between">
-          <h2>{name}</h2>
+        <div className="flex g-4 flex-col bg-gray-600 px-4 py-5 text-lg justify-between gap-2 relative ">
+          <GoPlay className="absolute left-8 -top-3 scale-[3] drop-shadow-icon" />
+          <h2 className="text-2xl mt-3">{name}</h2>
           <div id="lessonCount" className="flex gap-2 text-sm">
             <span>📼</span>
             <span>56 Aulas</span>
@@ -59,7 +61,7 @@ function Module({ name, imgUrl, link }: any) {
 const Home = ({ modules }: IProps) => {
   const router = useRouter()
   return (
-    <div className=" bg-slate-800 min-h-screen m-auto py-9 px-4 max-w-screen-sm flex flex-col gap-4">
+    <div className=" bg-gray-800 min-h-screen m-auto py-9 px-4 max-w-screen-sm flex flex-col gap-4">
       <div id="user-info" className="p-4">
         <p>
           <h3>Hello,</h3>

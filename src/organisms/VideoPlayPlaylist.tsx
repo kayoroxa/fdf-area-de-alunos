@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+import Video from '../atoms/Video'
 import OptionToggle from '../molecules/OptionToggle'
 import Playlist from '../molecules/PlayList'
 import Quiz from '../molecules/Quiz'
@@ -20,11 +21,11 @@ export default function VideoPlayPlaylist({ videosData }: IProps) {
     'playlist'
   )
 
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.src = curVideo.videoUrl
-    }
-  }, [curVideo])
+  // useEffect(() => {
+  //   if (videoRef.current) {
+  //     videoRef.current.src = curVideo.videoUrl
+  //   }
+  // }, [curVideo])
 
   const videoRef = useRef<HTMLVideoElement | null>(null)
 
@@ -33,16 +34,7 @@ export default function VideoPlayPlaylist({ videosData }: IProps) {
       id="videosCardápio"
       className="flex flex-col  w-11/12 gap-12 items-center "
     >
-      <div id="videoWrapper" className="w-full p-video relative bg-black">
-        <video
-          ref={videoRef}
-          className="w-full absolute top-0"
-          controls
-          autoPlay
-        >
-          <source src={curVideo.videoUrl} type="video/mp4" />
-        </video>
-      </div>
+      <Video src={curVideo.videoUrl} />
 
       <OptionToggle
         onOptionSelect={option => setOptionActive(option)}

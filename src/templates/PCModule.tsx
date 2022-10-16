@@ -10,7 +10,7 @@ interface IProps {
 export default function PCModule({ moduloName, videosData }: IProps) {
   return (
     <div className="w-full flex justify-center bg-gray-900 px-8">
-      <div className="flex min-h-screen flex-col pb-9 justify-start items-center gap-12  bg-gray-900 m-auto pc">
+      <div className="flex min-h-screen flex-col pb-9 justify-start items-center gap-12  bg-gray-800 m-auto pc">
         <div className=" rounded-3xl w-full overflow-hidden mt-6">
           <TopBarControls moduloName={moduloName} />
         </div>

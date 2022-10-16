@@ -17,8 +17,6 @@ body{
 }
 
 .card {
-  width: 280px;
-  height: 280px;
   /* flex-grow: 1; */
   flex-shrink: 1;
   /* flex-basis: 300px; */
@@ -27,12 +25,24 @@ body{
 * {
   box-sizing: border-box;
   transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
 }
 
 
 .wrapper-icon svg {
   height: 100%;
   width: 100%;
+}
+
+.shadow-bottom {
+  box-shadow: 0 20px 10px -10px rgba(0, 0, 0, 0.404);
+  /* box-shadow: 0 20px 10px -10px rgba(4, 86, 141, 0.404); */
+}
+
+@layer base {
+  .svg-shadow > svg {
+    @apply shadow;
+  }
 }
 
 @layer components {

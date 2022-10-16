@@ -67,7 +67,7 @@ export default function Playlist({
   return (
     <div
       id="playlist"
-      className="flex flex-col  w-full bg-gray-700 rounded-2xl overflow-hidden"
+      className="flex flex-col  w-full bg-gray-700 rounded-2xl overflow-hidden shadow-xl"
     >
       <ModuleHeader moduleInfo={curModule} />
       <div id="wrapper-tiras" className="pb-5">
