@@ -7,13 +7,35 @@ body{
   color: white;
 }
 
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #919191 #cfcfcf;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 40px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #3f3f3f;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #919191;
+  border-radius: 10px;
+  border: 0px solid #ffffff;
+}
+
 
 .pc {
   width: min(1400px, 100vw);
 }
 
 .p-video {
-  padding: 28% 0px;
+  padding: 27.8% 0px;
 }
 
 .card {
@@ -41,7 +63,7 @@ body{
 
 @layer base {
   .svg-shadow > svg {
-    @apply shadow;
+    @apply shadow-2xl;
   }
 }
 
@@ -59,4 +81,3 @@ body{
     @apply flex gap-3 px-4 py-5 border-separate border border-gray-600 border-opacity-30 items-center
   }
 }
-

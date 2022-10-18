@@ -14,7 +14,10 @@ module.exports = {
         betterhover: { raw: '(hover: hover)' },
       },
       dropShadow: {
-        icon: '0px 0px 6px rgba(0, 0, 0, 0.5)',
+        icon: '0px 0px 6px rgba(0, 0, 0, 0.6)',
+
+        'icon-white': '0px 0px 6px rgb(252, 255, 250, 0.6)',
+
         '4xl': [
           '0 0px 35px rgba(0, 0, 0, 0.25)',
           '0 0px 65px rgba(0, 0, 0, 0.15)',

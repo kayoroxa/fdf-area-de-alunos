@@ -13,20 +13,6 @@ interface IModulo {
   }[]
 }
 
-export default function ModuloPage({ data }: IModulo) {
-  return (
-    <>
-      <MediaQuery maxWidth={1020}>
-        <MobileModule moduloName="4 anos em 1 módulo" videosData={data} />
-      </MediaQuery>
-
-      <MediaQuery minWidth={1020}>
-        <PCModule moduloName="4 anos em 1 módulo" videosData={data} />
-      </MediaQuery>
-    </>
-  )
-}
-
 export async function getServerSideProps({ params, previewData }: any) {
   const client = createClient({ previewData })
   const response = await client.getByUID('module', params.uid)
@@ -76,4 +62,18 @@ export async function getServerSideProps({ params, previewData }: any) {
       data,
     },
   }
+}
+
+export default function ModuloPage({ data }: IModulo) {
+  return (
+    <>
+      <MediaQuery maxWidth={1020}>
+        <MobileModule moduloName="4 anos em 1 módulo" videosData={data} />
+      </MediaQuery>
+
+      <MediaQuery minWidth={1020}>
+        <PCModule moduloName="4 anos em 1 módulo" videosData={data} />
+      </MediaQuery>
+    </>
+  )
 }
