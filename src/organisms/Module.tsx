@@ -10,6 +10,7 @@ interface IModule {
   link?: string | false
   status: 'watching' | 'blocked' | 'done'
   newsLessons?: boolean
+  index: number
 }
 
 export default function CardModule({
@@ -18,6 +19,7 @@ export default function CardModule({
   link,
   status,
   newsLessons,
+  index,
 }: IModule) {
   return (
     <MyLink href={link} passHref>
@@ -36,7 +38,7 @@ export default function CardModule({
             className="w-full min-w-full h-full min-h-full object-cover"
           />
         </div>
-        <div className="flex g-4 flex-col bg-gray-600 px-4 py-5 text-lg justify-between gap-2 relative ">
+        <div className="flex g-4 flex-col flex-grow bg-gray-600 px-4 py-5 text-lg justify-between gap-2 relative ">
           {status === 'done' && (
             <BsFillCheckCircleFill className="absolute left-8 -top-3 scale-[3] drop-shadow-icon fill-green-300" />
           )}
@@ -48,7 +50,7 @@ export default function CardModule({
             <GiPadlock className="absolute left-8 -top-3 scale-[3] drop-shadow-icon" />
           )}
 
-          <h2 className="text-2xl mt-3">{name}</h2>
+          <h2 className="text-2xl mt-3">{'M' + index + ' - ' + name}</h2>
 
           <ul className="flex flex-grow gap-2 flex-wrap">
             {status === 'blocked' && (
@@ -72,7 +74,7 @@ export default function CardModule({
             {newsLessons && (
               <div
                 id="lessonCount"
-                className="flex gap-2 text-sm px-3 py-1 w-fit rounded-xl bg-orange-600"
+                className="flex gap-2 text-sm px-3 py-1 rounded-xl w-fit h-fit bg-orange-600"
               >
                 <span>Aulas novas</span>
               </div>

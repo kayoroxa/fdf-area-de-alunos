@@ -23,7 +23,7 @@ export default function PCVideoPlayPlaylist({ videosData }: IProps) {
     <div id="videosCardápio" className="flex w-full gap-12">
       <div id="left" className="flex flex-col gap-6 w-3/5">
         <Video src={curVideo.videoUrl} />
-        <h2>Materiais:</h2>
+        {/* <h2>Materiais:</h2> */}
         <Quiz />
       </div>
 

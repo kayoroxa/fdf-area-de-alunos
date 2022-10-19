@@ -7,6 +7,10 @@ body{
   color: white;
 }
 
+#__next{
+  overflow-x: hidden;
+}
+
 /* Firefox */
 * {
   scrollbar-width: auto;
@@ -17,10 +21,12 @@ body{
 *::-webkit-scrollbar {
   width: 10px;
   height: 40px;
+  
 }
 
 *::-webkit-scrollbar-track {
   background: #3f3f3f;
+  border-radius: 10px;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -60,6 +66,15 @@ body{
   box-shadow: 0 20px 10px -10px rgba(0, 0, 0, 0.404);
   /* box-shadow: 0 20px 10px -10px rgba(4, 86, 141, 0.404); */
 }
+
+/* *:not(path):not(g) {
+	color:                    hsla(210, 100%, 100%, 0.9) !important;
+	background:               hsla(210, 100%,  50%, 0.5) !important;
+	outline:    solid 0.25rem hsla(210, 100%, 100%, 0.5) !important;
+
+	box-shadow: none !important;
+} */
+
 
 @layer base {
   .svg-shadow > svg {
