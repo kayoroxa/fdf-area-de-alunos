@@ -13,11 +13,11 @@ export default async function handler(
   // }
   const { email } = req.query
   try {
-    const result = await fauna.query(
+    const result: { data: any } = await fauna.query(
       q.Get(q.Match(q.Index('user_by_email'), q.Casefold(email)))
     )
 
-    res.status(200).json(result)
+    res.status(200).json(result.data)
   } catch (error) {
     res.status(404).end('Not Found')
   }
