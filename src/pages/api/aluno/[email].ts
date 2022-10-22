@@ -1,6 +1,7 @@
 import { query as q } from 'faunadb'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { fauna } from '../../../services/faunadb'
+import { _User } from '../../../utils/types/_User'
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,13 +14,15 @@ export default async function handler(
   // }
   const { email } = req.query
   try {
-    const result: { data: any } = await fauna.query(
+    const { data }: { data: _User } = await fauna.query(
       q.Get(q.Match(q.Index('user_by_email'), q.Casefold(email)))
     )
 
-    res.status(200).json(result.data)
+    res.status(200).json(data)
+
+    console.log()
   } catch (error) {
-    res.status(404).end('Not Found')
+    res.status(404).end(JSON.stringify(error))
   }
 
   // res.status(200).json({

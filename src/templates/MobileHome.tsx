@@ -19,26 +19,15 @@ export default function MobileHome({ modules }: IProps) {
       <div id="esteira" className="flex flex-wrap gap-5 justify-center">
         {modules.map(({ name, imgUrl, slug }, i) => {
           return (
-            <>
-              <CardModule
-                link={i === 0 ? `/modulo/${slug}` : false}
-                key={i}
-                name={name}
-                imgUrl={imgUrl}
-                status={i === 0 ? 'done' : 'blocked'}
-                newsLessons={i === 0 ? true : false}
-                index={i + 1}
-              />
-              <CardModule
-                link={i === 0 ? `/modulo/${slug}` : false}
-                key={i}
-                name={name}
-                imgUrl={imgUrl}
-                status={i === 0 ? 'done' : 'blocked'}
-                newsLessons={i === 0 ? true : false}
-                index={i + 1}
-              />
-            </>
+            <CardModule
+              link={i === 0 ? `/modulo/${slug}` : false}
+              key={i}
+              name={name}
+              imgUrl={imgUrl}
+              status={i === 0 ? 'done' : 'blocked'}
+              newsLessons={i === 0 ? true : false}
+              index={i + 1}
+            />
           )
         })}
       </div>
