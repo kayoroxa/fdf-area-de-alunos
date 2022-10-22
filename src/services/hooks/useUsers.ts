@@ -46,5 +46,8 @@ async function getUsersFake() {
 }
 
 export default function useUsers() {
-  return useQuery('user', getUsers, { staleTime: 1000 * 60 * 5 })
+  return useQuery('user', getUsers, {
+    staleTime: 1000 * 60 * 60 * 1,
+    refetchOnWindowFocus: false,
+  })
 }

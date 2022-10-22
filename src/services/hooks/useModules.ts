@@ -15,5 +15,8 @@ async function getModules() {
 }
 
 export default function useModules() {
-  return useQuery('modules', getModules, { staleTime: 1000 * 60 * 5 })
+  return useQuery('modules', getModules, {
+    staleTime: 1000 * 60 * 60 * 1,
+    refetchOnWindowFocus: false,
+  })
 }
