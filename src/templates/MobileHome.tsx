@@ -20,11 +20,11 @@ export default function MobileHome({ modules }: IProps) {
         {modules.map(({ name, imgUrl, slug }, i) => {
           return (
             <CardModule
-              link={i === 0 ? `/modulo/${slug}` : false}
+              link={`/modulo/${slug}`}
               key={i}
               name={name}
               imgUrl={imgUrl}
-              status={i === 0 ? 'done' : 'blocked'}
+              status={'watching'}
               newsLessons={i === 0 ? true : false}
               index={i + 1}
             />
