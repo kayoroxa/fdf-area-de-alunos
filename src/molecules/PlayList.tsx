@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from 'react-icons/fa'
 import { GiPadlock } from 'react-icons/gi'
 import { GoPlay } from 'react-icons/go'
+import useModules from '../services/hooks/useModules'
 import { _VideoData } from '../utils/types/_VideoData'
 
 interface IProps {
@@ -51,7 +52,7 @@ function ModuleHeader({
       <div>
         <div id="name">{moduleInfo.name}</div>
         <div id="index" className=" text-sky-300 font-bold">
-          Módulo: {('000' + moduleInfo.indexModule).slice(-3)}
+          Módulo: {('000' + (moduleInfo.indexModule + 1)).slice(-3)}
         </div>
       </div>
     </div>
@@ -64,6 +65,13 @@ export default function Playlist({
   curVideo,
   curModule,
 }: IProps) {
+  const { data: dataModules } = useModules()
+  const nextModule = dataModules?.[curModule.indexModule + 1]
+  const prevModule = dataModules?.[curModule.indexModule - 1]
+  const showIndex = curModule.indexModule + 1
+  console.log(nextModule)
+  console.log(dataModules, curModule)
+
   return (
     <div
       id="playlist"
@@ -99,11 +107,12 @@ export default function Playlist({
                 </p>
               </div>
 
-              {videoData.allow ? (
+              {videoData.allow && !selected && (
                 <div id="play" className="wrapper-icon h-7">
                   <GoPlay />
                 </div>
-              ) : (
+              )}
+              {!videoData.allow && (
                 <div id="cadeado" className="wrapper-icon h-7">
                   <GiPadlock />
                 </div>
@@ -113,21 +122,23 @@ export default function Playlist({
         })}
       </div>
       <div className="w-full drop-shadow-xl">
-        <ModuleHeader
-          moduleInfo={{
-            name: 'Proximo módulo',
-            indexModule: curModule.indexModule + 1,
-            link: '/',
-          }}
-          shadow={false}
-          arrow=">"
-        />
+        {dataModules && curModule.indexModule + 1 < dataModules.length && (
+          <ModuleHeader
+            moduleInfo={{
+              name: 'Proximo módulo',
+              indexModule: showIndex,
+              link: '/modulo/' + nextModule?.slug,
+            }}
+            shadow={false}
+            arrow=">"
+          />
+        )}
         {curModule.indexModule - 1 >= 0 && (
           <ModuleHeader
             moduleInfo={{
               name: 'Voltar ao módulo anterior',
-              indexModule: curModule.indexModule - 1,
-              link: '/',
+              indexModule: showIndex - 2,
+              link: '/modulo/' + prevModule?.slug,
             }}
             shadow={false}
             arrow="<"
