@@ -1,15 +1,17 @@
 import { useRouter } from 'next/router'
+import { useContext } from 'react'
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from 'react-icons/fa'
 import { GiPadlock } from 'react-icons/gi'
 import { GoPlay } from 'react-icons/go'
+import { modulePageControl } from '../pages/modulo/[uid]'
 import useModules from '../services/hooks/useModules'
 import { _VideoData } from '../utils/types/_VideoData'
 
 interface IProps {
-  videosData: _VideoData[]
-  onVideoSelect: (videoData: _VideoData) => void
-  curVideo: _VideoData
-  curModule: {
+  videosData?: _VideoData[]
+  onVideoSelect?: (videoData: _VideoData) => void
+  curVideo?: _VideoData
+  curModule?: {
     name: string
     indexModule: number
   }
@@ -31,17 +33,26 @@ function ModuleHeader({
   arrow,
 }: IPropsModuleHeader) {
   const router = useRouter()
+  const { setCurVideo, setIndexCurModule, dataModules } =
+    useContext(modulePageControl)
   let myClass =
     'p-4 bg-gray-600 flex gap-6 items-center border-separate border border-gray-500 border-opacity-30 '
 
   if (shadow) myClass += ' drop-shadow-xl'
   if (moduleInfo.link) myClass += ' hover:cursor-pointer hover:bg-gray-500'
 
+  function handleClick() {
+    if (moduleInfo.link) {
+      router.push(moduleInfo.link)
+      setIndexCurModule(moduleInfo.indexModule)
+
+      const lessons = dataModules[moduleInfo.indexModule].lessons || []
+      setCurVideo(lessons[0])
+    }
+  }
+
   return (
-    <div
-      className={myClass}
-      onClick={() => moduleInfo.link && router.push(moduleInfo.link)}
-    >
+    <div className={myClass} onClick={handleClick}>
       {arrow && (
         <div id="icon" className="h-full text-3xl">
           <div id="cadeado" className="wrapper-icon h-7">
@@ -59,25 +70,28 @@ function ModuleHeader({
   )
 }
 
-export default function Playlist({
-  videosData,
-  onVideoSelect,
-  curVideo,
-  curModule,
-}: IProps) {
+export default function Playlist({}: IProps) {
   const { data: dataModules } = useModules()
-  const nextModule = dataModules?.[curModule.indexModule + 1]
-  const prevModule = dataModules?.[curModule.indexModule - 1]
-  const showIndex = curModule.indexModule + 1
-  console.log(nextModule)
-  console.log(dataModules, curModule)
+  const { curModule, curVideo, videosData, setCurVideo } =
+    useContext(modulePageControl)
+
+  if (curModule?.index === undefined) return <div>Erro 489</div>
+
+  const nextModule = dataModules?.[curModule.index + 1]
+  const prevModule = dataModules?.[curModule.index - 1]
+  const showIndex = curModule.index + 1
 
   return (
     <div
       id="playlist"
       className="flex flex-col  w-full bg-gray-700 rounded-2xl overflow-hidden shadow-xl"
     >
-      <ModuleHeader moduleInfo={curModule} />
+      <ModuleHeader
+        moduleInfo={{
+          name: curModule.name,
+          indexModule: curModule.index,
+        }}
+      />
       <div id="wrapper-tiras" className="pb-5">
         {videosData.map((videoData, i) => {
           const selected = curVideo.name === videoData.name
@@ -90,7 +104,7 @@ export default function Playlist({
                   ? 'pointer-hover'
                   : 'hover:cursor-not-allowed opacity-30 border-opacity-90'
               } ${selected ? 'selected' : 'not-selected'}`}
-              onClick={() => videoData.allow && onVideoSelect(videoData)}
+              onClick={() => videoData.allow && setCurVideo(videoData)}
             >
               <div
                 id="aula-numero"
@@ -122,22 +136,22 @@ export default function Playlist({
         })}
       </div>
       <div className="w-full drop-shadow-xl">
-        {dataModules && curModule.indexModule + 1 < dataModules.length && (
+        {dataModules && curModule.index + 1 < dataModules.length && (
           <ModuleHeader
             moduleInfo={{
               name: 'Proximo módulo',
-              indexModule: showIndex,
+              indexModule: curModule.index + 1,
               link: '/modulo/' + nextModule?.slug,
             }}
             shadow={false}
             arrow=">"
           />
         )}
-        {curModule.indexModule - 1 >= 0 && (
+        {curModule.index - 1 >= 0 && (
           <ModuleHeader
             moduleInfo={{
               name: 'Voltar ao módulo anterior',
-              indexModule: showIndex - 2,
+              indexModule: curModule.index - 1,
               link: '/modulo/' + prevModule?.slug,
             }}
             shadow={false}

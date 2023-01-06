@@ -5,4 +5,5 @@ export type _Module = {
   imgUrl: string
   slug: string
   lessons?: _VideoData[]
+  index?: number
 }
