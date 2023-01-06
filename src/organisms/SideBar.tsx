@@ -3,6 +3,7 @@ import { AiFillHome, AiFillPlayCircle } from 'react-icons/ai'
 import { MdVideoLibrary } from 'react-icons/md'
 import { SiSpeedtest } from 'react-icons/si'
 import HeaderWelcome from '../molecules/HeadWelcome'
+import MyLink from '../utils/MyLink'
 
 function ButtonHeader({
   children,
@@ -28,7 +29,11 @@ function ButtonHeader({
   )
 }
 
-export default function SideBar() {
+interface IProps {
+  active?: 'inicio' | 'continuar'
+}
+
+export default function SideBar({ active = 'inicio' }: IProps) {
   return (
     <section className="bg-gray-700/90 rounded-r-[40px] py-8 max-w-sm flex flex-col gap-12 items-center h-full">
       {/* <div id="ico" className="w-48 text-center ">
@@ -42,21 +47,30 @@ export default function SideBar() {
   </div> */}
       <HeaderWelcome />
       <main className="self-end flex flex-col gap-6 ml-12">
-        <ButtonHeader active>
-          <AiFillHome className="fill-sky-400" />{' '}
-          <span className="text-sky-400">Inicio</span>
-        </ButtonHeader>
+        <MyLink href="/">
+          <ButtonHeader active={active === 'inicio'}>
+            <AiFillHome className={active === 'inicio' ? 'fill-sky-400' : ''} />
+            <span className={active === 'inicio' ? 'text-sky-400' : ''}>
+              Inicio
+            </span>
+          </ButtonHeader>
+        </MyLink>
 
-        <ButtonHeader>
-          <AiFillPlayCircle /> <span>Continuar...</span>
+        <ButtonHeader active={active === 'continuar'}>
+          <AiFillPlayCircle
+            className={active === 'continuar' ? 'fill-sky-400' : ''}
+          />
+          <span className={active === 'continuar' ? 'text-sky-400' : ''}>
+            Continuar...
+          </span>
         </ButtonHeader>
 
         <ButtonHeader notAble>
-          <SiSpeedtest /> <span>Testar sua fluência</span>
+          <SiSpeedtest /> <span>Em breve</span>
         </ButtonHeader>
 
         <ButtonHeader notAble>
-          <MdVideoLibrary /> <span>Conteúdo livre</span>
+          <MdVideoLibrary /> <span>Em breve</span>
         </ButtonHeader>
       </main>
 

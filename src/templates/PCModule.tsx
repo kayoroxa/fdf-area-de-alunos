@@ -12,7 +12,7 @@ export default function PCModule({ moduloName, videosData }: IProps) {
   return (
     <section className="flex w-full h-full bg-gray-800">
       <div className="h-screen">
-        <SideBar />
+        <SideBar active="continuar" />
       </div>
       <div className="w-full flex justify-center  px-8 overflow-y-scroll max-h-screen">
         <div className="flex min-h-screen flex-col pb-9 justify-start items-center gap-12  bg-gray-800 m-auto pc">
