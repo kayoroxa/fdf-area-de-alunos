@@ -1,8 +1,9 @@
-import { useRef, useState } from 'react'
+import { useContext, useState } from 'react'
 import Video from '../atoms/Video'
 import OptionToggle from '../molecules/OptionToggle'
 import Playlist from '../molecules/PlayList'
 import Quiz from '../molecules/Quiz'
+import { modulePageControl } from '../pages/modulo/[uid]'
 import { _VideoData } from '../utils/types/_VideoData'
 
 interface IProps {
@@ -15,19 +16,11 @@ const getClass = (selected?: boolean) => {
   return selected ? init + ' bg-green-500' : init
 }
 
-export default function VideoPlayPlaylist({ videosData }: IProps) {
-  const [curVideo, setCurVideo] = useState(videosData[0])
+export default function VideoPlayPlaylist({}: IProps) {
+  const { curVideo } = useContext(modulePageControl)
   const [optionActive, setOptionActive] = useState<'playlist' | 'material'>(
     'playlist'
   )
-
-  // useEffect(() => {
-  //   if (videoRef.current) {
-  //     videoRef.current.src = curVideo.videoUrl
-  //   }
-  // }, [curVideo])
-
-  const videoRef = useRef<HTMLVideoElement | null>(null)
 
   return (
     <div
@@ -41,14 +34,7 @@ export default function VideoPlayPlaylist({ videosData }: IProps) {
         optionActive={optionActive}
       />
 
-      {optionActive === 'playlist' && (
-        <Playlist
-          curModule={{ name: 'Fundação', indexModule: 2 }}
-          videosData={videosData}
-          onVideoSelect={vidSelected => setCurVideo(vidSelected)}
-          curVideo={curVideo}
-        />
-      )}
+      {optionActive === 'playlist' && <Playlist />}
 
       {optionActive === 'material' && <Quiz />}
       {optionActive === 'material' && <Quiz />}
