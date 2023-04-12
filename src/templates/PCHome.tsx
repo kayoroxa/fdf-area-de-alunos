@@ -8,9 +8,10 @@ import { _Module } from '../utils/types/_Module'
 
 interface IProps {
   modules: _Module[]
+  isLoading: boolean
 }
 
-export default function PCHome({ modules }: IProps) {
+export default function PCHome({ modules, isLoading }: IProps) {
   return (
     <div className="bg-gray-800 h-screen w-screen  flex justify-center overflow-hidden">
       <SideBar />
@@ -21,21 +22,29 @@ export default function PCHome({ modules }: IProps) {
           id="esteira"
           className="flex flex-wrap gap-7 xl:gap-8 justify-center mb-6"
         >
-          {modules.map(({ name, imgUrl, slug }, i) => {
-            return (
-              <CardModule
-                link={`/modulo/${slug}`}
-                // link={i === 0 ? `/modulo/${slug}` : false}
-                key={i}
-                name={name}
-                imgUrl={imgUrl}
-                status={'watching'}
-                // status={i === 0 ? 'done' : 'blocked'}
-                newsLessons={i === 0 ? true : false}
-                index={i + 1}
-              />
-            )
-          })}
+          {isLoading ? (
+            <div className="flex justify-center items-center">
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          ) : (
+            modules.map(({ name, imgUrl, slug }, i) => {
+              return (
+                <CardModule
+                  link={`/modulo/${slug}`}
+                  // link={i === 0 ? `/modulo/${slug}` : false}
+                  key={i}
+                  name={name}
+                  imgUrl={imgUrl}
+                  status={'watching'}
+                  // status={i === 0 ? 'done' : 'blocked'}
+                  newsLessons={i === 0 ? true : false}
+                  index={i + 1}
+                />
+              )
+            })
+          )}
         </div>
       </section>
     </div>

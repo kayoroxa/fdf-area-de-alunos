@@ -29,7 +29,7 @@ export default function Video({ src }: IProps) {
 
     setTimeout(() => {
       setShowPlay(true)
-    }, 500)
+    }, 1000)
   }, [src])
 
   useEffect(() => {
