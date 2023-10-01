@@ -4,9 +4,12 @@ import prismadb from '../../../utils/prismadb'
 
 export async function GET(req: Request) {
   try {
-    const body = await req.json()
+    const { searchParams } = new URL(req.url)
+    const userId = searchParams.get('useId')
 
-    const { userId } = body
+    if (!userId) {
+      return new NextResponse('userId is required', { status: 400 })
+    }
 
     const modulesWithProgress = await prismadb.module.findMany({
       where: {
