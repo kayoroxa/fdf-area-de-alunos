@@ -11,6 +11,9 @@
     "slicemachine": "start-slicemachine",
     "postinstall": "prisma generate"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "@prisma/client": "^5.3.0",
     "@prismicio/client": "^6.7.1",
