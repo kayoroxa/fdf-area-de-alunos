@@ -18,7 +18,7 @@ export async function GET(req: Request) {
       include: {
         UserModuleProgress: {
           where: {
-            user: { id: userId }, // Substitua userId pelo ID do usuário atual
+            user: { id: 'fe208b5b-a3ef-4103-8bb0-0fb88f1a76dd' }, // Substitua userId pelo ID do usuário atual
           },
           select: {
             completedLessons: true,

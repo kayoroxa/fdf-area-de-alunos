@@ -1,5 +1,5 @@
 {
-  "name": "todo-app",
+  "name": "fdf-area-de-alunos",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,14 +12,15 @@
     "postinstall": "prisma generate"
   },
   "engines": {
-    "node": "16.x"
+    "node": "18.x"
   },
   "dependencies": {
-    "@prisma/client": "^5.3.0",
-    "@prismicio/client": "^6.7.1",
-    "@prismicio/helpers": "^2.3.5",
-    "@prismicio/next": "^0.1.6",
-    "@prismicio/slice-simulator-react": "^0.2.2",
+    "@prisma/client": "^5.3.1",
+    "@prismicio/client": "^7.2.0",
+    "@prismicio/helpers": "^2.3.9",
+    "@prismicio/next": "^1.3.5",
+    "@prismicio/react": "^2.7.3",
+    "@prismicio/slice-simulator-react": "^0.2.3",
     "axios": "^1.1.3",
     "faunadb": "^4.7.1",
     "framer-motion": "^7.5.3",
@@ -43,7 +44,7 @@
     "eslint-config-next": "^13.4.19",
     "miragejs": "^0.1.45",
     "postcss": "^8.4.17",
-    "prisma": "^5.3.0",
+    "prisma": "^5.3.1",
     "slice-machine-ui": "^0.5.0",
     "tailwindcss": "^3.1.8",
     "typescript": "4.6.2"

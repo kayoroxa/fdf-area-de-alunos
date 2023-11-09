@@ -31,6 +31,7 @@ model Module {
   totalLessons       Int                  @default(0)
   archived           Boolean              @default(false)
   UserModuleProgress UserModuleProgress[]
+  slug               String               @unique
 }
 
 model Video {
