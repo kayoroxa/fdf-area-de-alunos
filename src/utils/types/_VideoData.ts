@@ -1,7 +1,3 @@
-export interface _VideoData {
-  id: string
-  name: string
-  allow: boolean
-  videoUrl: string
-  tempUrl?: string
-}
+import { Video } from '@prisma/client'
+
+export type _VideoData = Video

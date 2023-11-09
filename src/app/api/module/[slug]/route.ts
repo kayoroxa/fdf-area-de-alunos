@@ -1,6 +1,7 @@
 // import { auth } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
 import prismadb from '../../../../utils/prismadb'
+import { ModuleForPage } from '../../../../utils/types/_Module'
 
 interface Context {
   params: { slug: string }
@@ -18,21 +19,27 @@ export async function GET(req: Request, { params }: Context) {
     //   return new NextResponse('userId is required', { status: 400 })
     // }
 
-    const modulesWithProgress = await prismadb.module.findUnique({
-      where: {
-        slug,
-      },
-      include: {
-        UserModuleProgress: {
-          where: {
-            user: { id: 'fe208b5b-a3ef-4103-8bb0-0fb88f1a76dd' }, // Substitua userId pelo ID do usuário atual
-          },
-          select: {
-            completedLessons: true,
-          },
+    const modulesWithProgress: ModuleForPage | null =
+      await prismadb.module.findUnique({
+        where: {
+          slug,
         },
-      },
-    })
+        include: {
+          lessons: {
+            include: {
+              videos: true,
+            },
+          },
+          // UserModuleProgress: {
+          //   where: {
+          //     user: { id: 'fe208b5b-a3ef-4103-8bb0-0fb88f1a76dd' }, // Substitua userId pelo ID do usuário atual
+          //   },
+          //   select: {
+          //     completedLessons: true,
+          //   },
+          // },
+        },
+      })
 
     return NextResponse.json(modulesWithProgress)
   } catch (error) {
