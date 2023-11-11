@@ -1,13 +1,9 @@
-import { useContext } from 'react'
 import Video from '../atoms/Video'
 import Playlist from '../molecules/PlayList'
 import Quiz from '../molecules/Quiz'
-import { modulePageControl } from '../pages/modulo/[uid]'
-import { _VideoData } from '../utils/types/_VideoData'
+import { useModuleStore } from '../store/useModule'
 
-interface IProps {
-  videosData: _VideoData[]
-}
+interface IProps {}
 
 // const getClass = (selected?: boolean) => {
 //   const init =
@@ -16,14 +12,14 @@ interface IProps {
 // }
 
 export default function PCVideoPlayPlaylist({}: IProps) {
-  const { curVideo } = useContext(modulePageControl)
+  const { curLesson } = useModuleStore()
 
   // const videoRef = useRef<HTMLVideoElement | null>(null)
 
   return (
     <div id="videosCardápio" className="flex w-full gap-12">
       <div id="left" className="flex flex-col gap-6 w-3/5">
-        <Video src={curVideo.videoUrl} />
+        <Video src={curLesson.videos?.[0].url} />
         {/* <h2>Materiais:</h2> */}
         <Quiz />
       </div>

@@ -1,14 +1,12 @@
 import PCVideoPlayPlaylist from '../organisms/PCVideoPlayPlaylist'
 import SideBar from '../organisms/SideBar'
 import TopBarControls from '../organisms/TopBarControls'
-import { _VideoData } from '../utils/types/_VideoData'
 
 interface IProps {
   moduloName: string
-  videosData: _VideoData[]
 }
 
-export default function PCModule({ moduloName, videosData }: IProps) {
+export default function PCModule({ moduloName }: IProps) {
   return (
     <section className="flex w-full h-full bg-gray-800">
       <div className="h-screen">
@@ -19,7 +17,7 @@ export default function PCModule({ moduloName, videosData }: IProps) {
           <div className=" rounded-3xl w-full overflow-hidden mt-6">
             <TopBarControls moduloName={moduloName} />
           </div>
-          <PCVideoPlayPlaylist videosData={videosData} />
+          <PCVideoPlayPlaylist />
         </div>
       </div>
     </section>

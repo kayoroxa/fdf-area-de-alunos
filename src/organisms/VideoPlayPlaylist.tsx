@@ -1,13 +1,13 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import Video from '../atoms/Video'
 import OptionToggle from '../molecules/OptionToggle'
 import Playlist from '../molecules/PlayList'
 import Quiz from '../molecules/Quiz'
-import { modulePageControl } from '../pages/modulo/[uid]'
-import { _VideoData } from '../utils/types/_VideoData'
+import { useModuleStore } from '../store/useModule'
+import { LessonWithVideos } from '../utils/types/_Module'
 
 interface IProps {
-  videosData: _VideoData[]
+  videosData: LessonWithVideos[]
 }
 
 const getClass = (selected?: boolean) => {
@@ -17,7 +17,7 @@ const getClass = (selected?: boolean) => {
 }
 
 export default function VideoPlayPlaylist({}: IProps) {
-  const { curVideo } = useContext(modulePageControl)
+  const { curLesson } = useModuleStore()
   const [optionActive, setOptionActive] = useState<'playlist' | 'material'>(
     'playlist'
   )
@@ -27,7 +27,7 @@ export default function VideoPlayPlaylist({}: IProps) {
       id="videosCardápio"
       className="flex flex-col  w-11/12 gap-12 items-center "
     >
-      <Video src={curVideo.videoUrl} />
+      <Video src={curLesson.videos?.[0].url} />
 
       <OptionToggle
         onOptionSelect={option => setOptionActive(option)}

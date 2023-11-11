@@ -3,8 +3,9 @@ import { useContext } from 'react'
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from 'react-icons/fa'
 import { GiPadlock } from 'react-icons/gi'
 import { GoPlay } from 'react-icons/go'
-import { modulePageControl } from '../pages/modulo/[uid]'
+import { modulePageControl } from '../pages/modulo/[slug]'
 import useModules from '../services/hooks/useModules'
+import { useModuleStore } from '../store/useModule'
 import { _VideoData } from '../utils/types/_VideoData'
 
 interface IProps {
@@ -33,8 +34,11 @@ function ModuleHeader({
   arrow,
 }: IPropsModuleHeader) {
   const router = useRouter()
-  const { setCurVideo, setIndexCurModule, dataModules } =
-    useContext(modulePageControl)
+  const { setIndexCurModule } = useContext(modulePageControl)
+
+  const { curModule, setCurLesson } = useModuleStore()
+  const lessons = curModule.lessons
+
   let myClass =
     'p-4 bg-gray-600 flex gap-6 items-center border-separate border border-gray-500 border-opacity-30 '
 
@@ -46,8 +50,8 @@ function ModuleHeader({
       router.push(moduleInfo.link)
       setIndexCurModule(moduleInfo.indexModule)
 
-      const lessons = dataModules[moduleInfo.indexModule].lessons || []
-      setCurVideo(lessons[0])
+      // const lessons = dataModules[moduleInfo.indexModule]. || []
+      setCurLesson((lessons || [])[0])
     }
   }
 
@@ -72,14 +76,19 @@ function ModuleHeader({
 
 export default function Playlist({}: IProps) {
   const { data: dataModules } = useModules()
-  const { curModule, curVideo, videosData, setCurVideo } =
-    useContext(modulePageControl)
 
-  if (curModule?.index === undefined) return <div>Erro 489</div>
+  const { curModule, setCurLesson, curLesson } = useModuleStore()
 
-  const nextModule = dataModules?.[curModule.index + 1]
-  const prevModule = dataModules?.[curModule.index - 1]
-  const showIndex = curModule.index + 1
+  const lessons = curModule.lessons
+  if (curModule.order === null) return <div>Erro 489</div>
+
+  const nextModule = dataModules?.[curModule.order + 1]
+  const prevModule = dataModules?.[curModule.order - 1]
+  const showIndex = curModule.order + 1
+
+  if (!lessons) {
+    return <div>Não tem Lessons, {JSON.stringify(curModule)}</div>
+  }
 
   return (
     <div
@@ -89,22 +98,22 @@ export default function Playlist({}: IProps) {
       <ModuleHeader
         moduleInfo={{
           name: curModule.name,
-          indexModule: curModule.index,
+          indexModule: curModule.order,
         }}
       />
       <div id="wrapper-tiras" className="pb-5">
-        {videosData.map((videoData, i) => {
-          const selected = curVideo.name === videoData.name
+        {lessons.map((lesson, i) => {
+          const selected = curLesson.id === lesson.id
           return (
             <div
               key={i}
               id="tirinha-do-vid"
               className={`tirinhas ${
-                videoData.allow
+                !lesson.archived
                   ? 'pointer-hover'
                   : 'hover:cursor-not-allowed opacity-30 border-opacity-90'
               } ${selected ? 'selected' : 'not-selected'}`}
-              onClick={() => videoData.allow && setCurVideo(videoData)}
+              onClick={() => lesson.archived && setCurLesson(lesson)}
             >
               <div
                 id="aula-numero"
@@ -115,18 +124,18 @@ export default function Playlist({}: IProps) {
                 {i + 1}
               </div>
               <div className="flex flex-col flex-1">
-                <p className=" text-lg capitalize">{videoData.name}</p>
+                <p className=" text-lg capitalize">{lesson.name}</p>
                 <p className=" text-xs">
-                  {videoData.allow ? '15:05' : 'em breve'}
+                  {lesson.archived ? '15:05' : 'em breve'}
                 </p>
               </div>
 
-              {videoData.allow && !selected && (
+              {lesson.archived && !selected && (
                 <div id="play" className="wrapper-icon h-7">
                   <GoPlay />
                 </div>
               )}
-              {!videoData.allow && (
+              {!lesson.archived && (
                 <div id="cadeado" className="wrapper-icon h-7">
                   <GiPadlock />
                 </div>
@@ -136,22 +145,22 @@ export default function Playlist({}: IProps) {
         })}
       </div>
       <div className="w-full drop-shadow-xl">
-        {dataModules && curModule.index + 1 < dataModules.length && (
+        {dataModules && curModule.order + 1 < dataModules.length && (
           <ModuleHeader
             moduleInfo={{
               name: 'Proximo módulo',
-              indexModule: curModule.index + 1,
+              indexModule: curModule.order + 1,
               link: '/modulo/' + nextModule?.slug,
             }}
             shadow={false}
             arrow=">"
           />
         )}
-        {curModule.index - 1 >= 0 && (
+        {curModule.order - 1 >= 0 && (
           <ModuleHeader
             moduleInfo={{
               name: 'Voltar ao módulo anterior',
-              indexModule: curModule.index - 1,
+              indexModule: curModule.order - 1,
               link: '/modulo/' + prevModule?.slug,
             }}
             shadow={false}

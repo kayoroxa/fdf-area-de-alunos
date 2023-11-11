@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useRef, useState, VideoHTMLAttributes } from 'react'
+import { useRef, useState, VideoHTMLAttributes } from 'react'
 import { GoPlay } from 'react-icons/go'
 // import loading from 'loading.gif'
 
@@ -15,26 +15,26 @@ export default function Video({ src }: IProps) {
   const [showBack, setShowBack] = useState(true)
   const [showPlay, setShowPlay] = useState(false)
 
-  useEffect(() => {
-    setShowBack(true)
-    if (videoRef.current && src) {
-      videoRef.current.src = src
-    }
-    setLoaded(false)
-    setShowPlay(false)
+  // useEffect(() => {
+  //   setShowBack(true)
+  //   if (videoRef.current && src) {
+  //     videoRef.current.src = src
+  //   }
+  //   setLoaded(false)
+  //   setShowPlay(false)
 
-    if (loadingRef.current)
-      loadingRef.current.src =
-        loadingRef.current.src.replace(/\?.*$/, '') + `?x=${Math.random()}`
+  //   if (loadingRef.current)
+  //     loadingRef.current.src =
+  //       loadingRef.current.src.replace(/\?.*$/, '') + `?x=${Math.random()}`
 
-    setTimeout(() => {
-      setShowPlay(true)
-    }, 1000)
-  }, [src])
+  //   setTimeout(() => {
+  //     setShowPlay(true)
+  //   }, 1000)
+  // }, [src])
 
-  useEffect(() => {
-    if (!showBack) setShowPlay(false)
-  }, [showBack])
+  // useEffect(() => {
+  //   if (!showBack) setShowPlay(false)
+  // }, [showBack])
 
   // useEffect(() => {
   //   if (loadingRef.current)

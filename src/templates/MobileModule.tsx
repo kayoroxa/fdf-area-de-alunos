@@ -1,10 +1,10 @@
 import TopBarControls from '../organisms/TopBarControls'
 import VideoPlayPlaylist from '../organisms/VideoPlayPlaylist'
-import { _VideoData } from '../utils/types/_VideoData'
+import { LessonWithVideos } from '../utils/types/_Module'
 
 interface IProps {
   moduloName: string
-  videosData: _VideoData[]
+  videosData: LessonWithVideos[]
 }
 
 export default function MobileModule({ moduloName, videosData }: IProps) {
